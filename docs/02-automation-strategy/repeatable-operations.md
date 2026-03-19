@@ -14,7 +14,7 @@ The complexity of the database didn't cause the extended downtime. The downtime 
 
 ## 2. Incorrect Handling: The Perpetuation of Ad-Hoc Interventions
 
-Organizations usually handle the aftermath of these events badly. After the database recovers, the senior engineer gets praised. Management celebrates the "hero" who saved the day, reinforcing the exact dynamic that caused the outage. The post-mortem hyper-focuses on the technical root cause—the replication bug—and creates Jira tickets to rewrite the consensus algorithm.
+Organizations usually handle the aftermath of these events badly. After the database recovers, the senior engineer gets praised. Management celebrates the "hero" who saved the day, reinforcing the exact dynamic that caused the outage. The postmortem hyper-focuses on the technical root cause—the replication bug—and creates Jira tickets to rewrite the consensus algorithm.
 
 What gets ignored is the operational gap. Deep architectural bugs take months to safely patch and deploy. Until then, you're wide open to the exact same failure. Nobody formalizes the senior engineer's diagnostic process. Nobody translates their intuition about backpressure into a standard alert. Nobody turns the manual leadership transfer into a safe, repeatable tool.
 
@@ -24,7 +24,7 @@ Instead, the fix stays ad-hoc. The senior engineer might drop a bash script in S
 
 Relying on tribal knowledge creates compounding risks. The most obvious is a bimodal Mean Time To Recovery (MTTR). Your ability to restore service becomes a lottery. If the incident hits while the senior engineer is awake, MTTR is five minutes. If they're asleep, MTTR is four hours. You can't guarantee SLOs with this kind of variance, and customers quickly notice the inconsistent response times.
 
-This also creates a massive "Bus Factor." Your platform's survival depends on a single human point of failure. It's not just about them quitting; it's about them taking PTO, sleeping, or just burning out. If your uptime depends on a few people being constantly vigilant, your reliability is an illusion. You're papering over operational cracks with human sacrifice.
+This also creates a massive bus factor. Your platform's survival depends on a single human point of failure. It's not just about them quitting; it's about them taking PTO, sleeping, or just burning out. If your uptime depends on a few people being constantly vigilant, your reliability is an illusion. You're papering over operational cracks with human sacrifice.
 
 Worse, ad-hoc interventions destroy auditability and cause state drift. When an engineer runs a script from their laptop to prune a queue or bump a timeout, there's no record of it. The next on-call shift inherits a production environment that no longer matches your infrastructure-as-code. This drift breaks staging environments, ruins capacity planning, and ensures the next outage will be a nightmare because nobody knows the actual state of the system.
 
@@ -34,7 +34,7 @@ To fix this, senior engineering leadership needs to move the team away from stat
 
 Mitigation has to be detached from individual SSH access and local laptops. If you need to transfer leadership, purge a cache, or drain traffic, it should happen through a centralized, version-controlled control plane. Engineers shouldn't have raw, unmediated access to mutate production. They should use peer-reviewed, tested tools with hardcoded safety limits. This keeps the blast radius contained and ensures actions are deterministic.
 
-Auditability isn't optional; it has to be baked into this control plane. Every command run, every parameter passed, and every action taken needs to be logged with the user, intent, and timestamp. This isn't for blaming people. It's for post-mortems. You can't fix your operational response if you're relying on someone's memory of what they typed at 3:00 AM. An audit trail lets you see exactly where the friction was and how to improve the tooling.
+Auditability isn't optional; it has to be baked into this control plane. Every command run, every parameter passed, and every action taken needs to be logged with the user, intent, and timestamp. This isn't for blaming people. It's for postmortems. You can't fix your operational response if you're relying on someone's memory of what they typed at 3:00 AM. An audit trail lets you see exactly where the friction was and how to improve the tooling.
 
 ## 5. Human Factors: Cognitive Load, Onboarding, and Psychological Safety
 
